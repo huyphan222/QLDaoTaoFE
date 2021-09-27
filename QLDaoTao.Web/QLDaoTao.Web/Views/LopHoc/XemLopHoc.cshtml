@@ -1,0 +1,85 @@
+﻿@model QLDaoTao.Web.Models.LopHoc.LopHocViewModel
+
+@{
+    ViewData["Title"] = "XemLopHoc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Xem chi tiết lớp học</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.MaLop)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.MaLop)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.TenLop)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.TenLop)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.NgayKhaiGiang)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.NgayKhaiGiang)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.NgayKetThuc)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.NgayKetThuc)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.SoLuongHV)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.SoLuongHV)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.QDMoLop)
+        </dt>
+        @if (Model.QDMoLop != null)
+        {
+            <dd class="col-sm-8">
+                <a href="~/FilesLopHoc/@Model.QDMoLop" download> @Model.QDMoLop</a>
+            </dd>
+        }
+        @if (Model.QDMoLop == null)
+        {
+            <dd class="col-sm-8">
+                Không có nội dung để tải
+            </dd>
+        }
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.ThoiKhoaBieu)
+        </dt>
+        @if (Model.ThoiKhoaBieu != null)
+        {
+            <dd class="col-sm-8">
+                <a href="~/FilesLopHoc/@Model.ThoiKhoaBieu" download> @Model.ThoiKhoaBieu</a>
+            </dd>
+        }
+        @if (Model.ThoiKhoaBieu == null)
+        {
+            <dd class="col-sm-8">
+                Không có nội dung để tải
+            </dd>
+        }
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.GhiChu)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.GhiChu)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-warning" href='@Url.Action("SuaLopHoc","LopHoc",new {id = Model.LopHoc_Id })'><i class="fas fa-tools"></i></a>    
+    <a class="btn btn-danger"  asp-controller="LopHoc" asp-action="Index">Quay trở lại</a>
+</div>

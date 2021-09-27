@@ -1,0 +1,73 @@
+﻿@model IEnumerable<QLDaoTao.Web.Models.ChuongTrinhDaoTao.CTDaoTaoView>
+
+
+@{
+    ViewData["Title"] = "Danh sach chuong trinh vo hieu luc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+@*<link rel="stylesheet" type="text/css" href="~/dataTable/datatables.min.css" />*@
+
+
+<h1>Quản lý chương trình đào tạo vô hiệu hóa</h1>
+
+<p>
+    <a class="btn btn-primary" asp-controller="CTDaoTao" asp-action="Index">Quay trở lại</a>
+</p>
+<table id="example" class="table table-striped table-bordered" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MaCT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenCT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThoiGianDaotao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayBanHanh)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaCT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenCT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThoiGianDaotao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayBanHanh)
+                </td>
+                <td>
+                    <a class="btn btn-secondary" href='@Url.Action("KhoiPhucCTDaoTao","CTDaoTao", new {id = item.CTDaoTao_Id })' onclick="return confirm('Bạn có chắc muốn khôi phục lại chương trình này không')"><i class="fas fa-trash-restore-alt"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="~/dataTable/datatables.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#example').dataTable({
+            "language": {
+                "info": "Tổng số: _TOTAL_ chương trình vô hiệu hiện hành",
+                "search": "Tìm kiếm: ",
+                "infoEmpty": "Tổng số: 0 chương trình hiện hành",
+                "lengthMenu": "Hiện _MENU_ dữ liệu"
+            }
+        });
+    });
+</script>

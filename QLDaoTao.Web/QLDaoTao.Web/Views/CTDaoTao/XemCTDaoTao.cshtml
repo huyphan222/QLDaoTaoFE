@@ -1,0 +1,81 @@
+﻿@model QLDaoTao.Web.Models.ChuongTrinhDaoTao.CTDaoTao
+
+@{
+    ViewData["Title"] = "XemCTDaoTao";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Chi tiết chương trình đào tạo</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.MaCT)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.MaCT)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.TenCT)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.TenCT)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.ThoiGianDaotao)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.ThoiGianDaotao)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.HocPhi)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.HocPhi)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.NgayBanHanh)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.NgayBanHanh)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.NoiDungCT)
+        </dt>
+        <dd class="col-sm-8">
+            @if (Model.NoiDungCT != null)
+            {
+                <a href="~/Files/@Model.NoiDungCT" download> Tải nội dụng</a>
+            }
+            @if (Model.NoiDungCT == null)
+            {
+                <p> Không có nội dung để tải</p>
+            }
+
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.QDBanHanh)
+        </dt>
+        <dd class="col-sm-8">
+            @if (Model.QDBanHanh != null)
+            {
+                <a href="~/Files/@Model.QDBanHanh" download> Tải nội dụng</a>
+            }
+            @if (Model.QDBanHanh == null)
+            {
+                <p>Không có nội dung để tải</p>
+            }
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.GhiChu)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.GhiChu)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-warning" href='@Url.Action("SuaCTDaoTao","CTDaoTao", new {id = Model.CTDaoTao_Id})'><i class="fas fa-tools"></i></a> |
+    <a class="btn btn-secondary" asp-controller="CTDaoTao" asp-action="Index">Quay trở lại </a>
+</div>

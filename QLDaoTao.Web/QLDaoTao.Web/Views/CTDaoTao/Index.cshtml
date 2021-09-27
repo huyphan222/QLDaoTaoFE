@@ -1,0 +1,91 @@
+﻿@model IEnumerable<QLDaoTao.Web.Models.ChuongTrinhDaoTao.CTDaoTaoView>
+
+
+@{
+    ViewData["Title"] = "Danh sach chuong trinh";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<link href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" rel="stylesheet" />*@
+
+<link rel="stylesheet" type="text/css" href="~/dataTable/datatables.min.css" />
+
+
+
+
+<h1>Quản lý chương trình đào tạo</h1>
+
+<div class="list-group list-group-horizontal">
+    <p class="list-inline">
+        <a class="btn btn-primary " asp-controller="CTDaoTao" asp-action="TaoCTDaoTao"><i class="fas fa-plus"></i></a>
+    </p>
+    <p class="list-inline ml-auto">
+        <a class="btn btn-danger" asp-controller="CTDaoTao" asp-action="DanhSachCTDaoTaoVoHieuLuc">Danh sách vô hiệu hóa</a>
+    </p>
+</div>
+
+<table id="example" class="table table-striped table-bordered" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MaCT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenCT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThoiGianDaotao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayBanHanh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GhiChu)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaCT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenCT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThoiGianDaotao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayBanHanh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GhiChu)
+            </td>          
+            <td>
+                <a class="btn btn-success" href='@Url.Action("XemCTDaoTao","CTDaoTao",new {id = item.CTDaoTao_Id })'><i class="fas fa-info"></i></a>
+                <a class="btn btn-warning" href='@Url.Action("SuaCTDaoTao","CTDaoTao",new {id = item.CTDaoTao_Id })'><i class="fas fa-tools"></i></a>
+                <a class="btn btn-danger" href='@Url.Action("XoaCTDaoTao","CTDaoTao", new {id = item.CTDaoTao_Id })' onclick="return confirm('Bạn có chắc muốn vô hiệu hóa chương trình này không')"><i class="fas fa-trash-alt"></i></a>
+                <a class="btn btn-primary" href='@Url.Action("DanhSachLopHocTheoCTDaoTao","LopHoc", new {id = item.CTDaoTao_Id })'>Lớp</a>
+            </td>          
+        </tr>
+        }
+    </tbody>
+</table>
+
+<script type="text/javascript" src="~/dataTable/datatables.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#example').dataTable({
+            "language": {
+                "info": "Tổng số: _TOTAL_ chương trình hiện hành",
+                "search": "Tìm kiếm: ",
+                "infoEmpty": "Tổng số: 0 chương trình hiện hành",
+                "lengthMenu": "Hiện _MENU_ dữ liệu",
+                "infoFiltered": "(lọc ra từ tổng số _MAX_ chương trình hiện hành )"
+            }
+        });
+    });
+</script>
+

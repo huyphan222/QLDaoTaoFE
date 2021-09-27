@@ -1,0 +1,87 @@
+﻿@model QLDaoTao.Web.Models.ChuongTrinhDaoTao.SuaCTDaoTaoView
+
+@{
+    ViewData["Title"] = "SuaCTDaoTao";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Cập nhật chương trình đào tạo </h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form enctype="multipart/form-data"  asp-controller="CTDaoTao" asp-action="SuaCTDaoTao" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if (TempData["ThanhCong"] != null)
+            {
+                <p class="alert alert-success">@TempData["ThanhCong"]</p>
+            }
+            @if (TempData["Loi"] != null)
+            {
+                <p class="alert alert-danger">@TempData["Loi"]</p>
+            }
+            <input hidden asp-for="CTDaoTao_Id" />
+            <input hidden asp-for="NoiDungCTDaTonTai" />
+            <input hidden asp-for="QuyDinhBanHanhDaTonTai" />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="MaCT" class="control-label"></label>
+                        <input asp-for="MaCT" class="form-control" />
+                        <span asp-validation-for="MaCT" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TenCT" class="control-label"></label>
+                        <input asp-for="TenCT" class="form-control" />
+                        <span asp-validation-for="TenCT" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ThoiGianDaotao" class="control-label"></label>
+                        <input asp-for="ThoiGianDaotao" class="form-control" />
+                        <span asp-validation-for="ThoiGianDaotao" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="HocPhi" class="control-label"></label>
+                        <input asp-for="HocPhi" class="form-control" />
+                        <span asp-validation-for="HocPhi" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="NgayBanHanh" class="control-label"></label>
+                        <input asp-for="NgayBanHanh" type="date" class="form-control" />
+                        <span asp-validation-for="NgayBanHanh" class="text-danger"></span>
+                    </div>
+
+                     <div class="form-group">
+                        <label asp-for="NoiDungCT" class="control-label"></label>
+                        <input asp-for="NoiDungCT" class="form-control" />
+                        <span asp-validation-for="NoiDungCT" class="text-danger"></span>
+                     </div>
+
+
+                    <div class="form-group">
+                        <label asp-for="QDBanHanh" class="control-label"></label>
+                        <input asp-for="QDBanHanh" class="form-control" />
+                        <span asp-validation-for="QDBanHanh" class="text-danger"></span>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label asp-for="GhiChu" class="control-label"></label>
+                        <input asp-for="GhiChu" type="text" class="form-control" />
+                        <span asp-validation-for="GhiChu" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Cập nhật" class="btn btn-primary" />
+                <a class="btn btn-secondary" asp-controller="CTDaoTao" asp-action="Index">Quay trở lại</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");} 
+}

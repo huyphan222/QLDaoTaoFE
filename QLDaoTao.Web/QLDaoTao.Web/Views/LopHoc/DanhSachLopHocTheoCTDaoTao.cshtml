@@ -1,0 +1,98 @@
+﻿@model IEnumerable<QLDaoTao.Web.Models.LopHoc.LopHocViewModel>
+
+@{
+    ViewData["Title"] = "DanhSachLopHocTheoCTDaoTao";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="~/dataTable/datatables.min.css" />
+
+<h1>Danh Sách lớp học -  @ViewBag.TenCTDaoTao </h1>
+
+<p>
+    <a class="btn btn-warning"  asp-controller="LopHoc" asp-action="TaoLopHoc">Thêm Lớp học</a>
+    <a class="btn btn-danger" asp-controller="CTDaoTao" asp-action="Index">Quay Trở lại</a>
+</p>
+<table id="danhsachlophoctheoCTdaotao" class="table table-striped table-bordered" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MaLop)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenLop)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayKhaiGiang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayKetThuc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoLuongHV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QDMoLop)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThoiKhoaBieu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GhiChu)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaLop)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenLop)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayKhaiGiang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayKetThuc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoLuongHV)
+                </td>
+                <td>
+                    <a href="~/FilesLopHoc/" download> Tải nội dụng</a>
+                </td>
+                <td>
+                    <a href="~/FilesLopHoc/" download> Tải nội dụng</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GhiChu)
+                </td>
+                <td>
+                    @Html.ActionLink("", "SuaLopHoc", new { id = item.LopHoc_Id }, new {@class="fas fa-info btn btn-primary"  }) |
+                    @Html.ActionLink("XemLopHoc", "XemLopHoc", new { id = item.LopHoc_Id}) |
+                    @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<script type="text/javascript" src="~/dataTable/datatables.min.js"></script>
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('#danhsachlophoctheoCTdaotao').dataTable({
+                "language": {
+                    "info": "Tổng số: _TOTAL_ lớp học hiện hành",
+                    "search": "Tìm kiếm: ",
+                    "infoEmpty": "Tổng số: 0 lớp học hiện hành",
+                    "lengthMenu": "Hiện _MENU_ dữ liệu",
+                    "infoFiltered": "(lọc ra từ tổng số _MAX_ lớp hiện hành )"
+                }
+            });
+        });
+</script>
